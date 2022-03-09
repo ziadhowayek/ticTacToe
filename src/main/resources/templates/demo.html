@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tic Tac Toe</title>
+    <style>
+      td {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        font-size: large;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <span th:if="${win} == false">
+      <h1 th:text="${turn}"></h1>
+      <table>
+        <tr th:each="i : ${#numbers.sequence(0, 2)}">
+          <td th:each="j : ${#numbers.sequence(0, 2)}">
+            <span th:if="${board[i][j]} == n">
+              <a th:href="@{${i}+'/'+${j}}">Click me</a>
+            </span>
+            <span th:unless="${board[i][j]} == n">
+              <p th:text="${board[i][j]}"></p>
+            </span>
+          </td>
+        </tr>
+      </table>
+      <a href="new"><button>New Game</button></a>
+      <a href="ai"><button>ai Game</button></a>
+    </span>
+    <span th:if="${win} == true">
+      <h1>It Fucking worked</h1>
+      <a href="new"><button>New Game</button></a>
+    </span>
+  </body>
+</html>
